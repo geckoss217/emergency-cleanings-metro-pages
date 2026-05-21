@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "name": "ec-metro-pages",
+  "builds": [
+    { "src": "nyc-hoarding-cleanup/index.html",     "use": "@vercel/static" },
+    { "src": "boston-hoarding-cleanup/index.html",  "use": "@vercel/static" },
+    { "src": "dc-hoarding-cleanup/index.html",      "use": "@vercel/static" },
+    { "src": "la-hoarding-cleanup/index.html",      "use": "@vercel/static" },
+    { "src": "seattle-hoarding-cleanup/index.html", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/nyc-hoarding-cleanup",     "dest": "/nyc-hoarding-cleanup/index.html" },
+    { "src": "/boston-hoarding-cleanup",  "dest": "/boston-hoarding-cleanup/index.html" },
+    { "src": "/dc-hoarding-cleanup",      "dest": "/dc-hoarding-cleanup/index.html" },
+    { "src": "/la-hoarding-cleanup",      "dest": "/la-hoarding-cleanup/index.html" },
+    { "src": "/seattle-hoarding-cleanup", "dest": "/seattle-hoarding-cleanup/index.html" }
+  ]
+}
