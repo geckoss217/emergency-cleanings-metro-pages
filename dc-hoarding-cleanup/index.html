@@ -104,7 +104,7 @@
         <div class="form-card">
           <h3>Get Your Free Assessment</h3>
           <p>No obligation — a specialist will call you shortly.</p>
-          <form onsubmit="window.location.href='tel:8333464652'; return false;">
+          <form id="lp-contact-form">
             <div class="form-field">
               <label for="name-dc">Full Name</label>
               <input type="text" id="name-dc" name="name" placeholder="Your full name" required />
@@ -456,4 +456,73 @@
         <p>We sort where possible — items that can be donated go to donation, recyclables are handled responsibly. What can't be reused is disposed of through proper channels. We document the process and handle everything with respect for the property and the people involved.</p>
       </details>
     </div>
-  </
+  </div>
+</section>
+
+<script src="https://www.google.com/recaptcha/api.js?render=6LcB9vwqAAAAAHLdGRiDUuq4KfypP064PClkyHvF" async defer></script>
+<script>
+(function() {
+  var RC_KEY = '6LcB9vwqAAAAAHLdGRiDUuq4KfypP064PClkyHvF';
+  var CF7 = 'https://emergencycleanings.com/wp-json/contact-form-7/v1/contact-forms/4032/feedback';
+  var SOURCE = 'DC LP - Hoarding Cleanup';
+
+  document.getElementById('lp-contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var form = e.target;
+    var btn  = form.querySelector('button[type=submit]');
+    var nameEl  = form.querySelector('input[type=text]');
+    var phoneEl = form.querySelector('input[type=tel]');
+    var emailEl = form.querySelector('input[type=email]');
+
+    btn.disabled = true;
+    var origText = btn.textContent;
+    btn.textContent = 'Sending…';
+
+    try {
+      var token = await grecaptcha.execute(RC_KEY, {action: 'contactform'});
+
+      var fd = new FormData();
+      fd.append('_wpcf7', '4032');
+      fd.append('_wpcf7_version', '6.1.6');
+      fd.append('_wpcf7_locale', 'en_US');
+      fd.append('_wpcf7_unit_tag', 'wpcf7-f4032-p4019-o1');
+      fd.append('_wpcf7_container_post', '4019');
+      fd.append('_wpcf7_posted_data_hash', '');
+      fd.append('_wpcf7_recaptcha_response', token);
+      fd.append('your-subject', SOURCE);
+      fd.append('your-name',  nameEl  ? nameEl.value  : '');
+      fd.append('your-phone', phoneEl ? phoneEl.value : '');
+      fd.append('your-email', emailEl ? emailEl.value : '');
+
+      var res  = await fetch(CF7, {method: 'POST', body: fd});
+      var json = await res.json();
+
+      if (json.status === 'mail_sent') {
+        var card = form.closest('.form-card');
+        if (card) {
+          card.innerHTML = '<div style="text-align:center;padding:40px 16px">'
+            + '<div style="font-size:52px;margin-bottom:12px">✅</div>'
+            + '<h3 style="color:#fff;margin-bottom:8px">We got it!</h3>'
+            + '<p style="color:rgba(255,255,255,0.8)">A specialist will call you shortly at ' + (phoneEl ? phoneEl.value : 'the number you provided') + '.</p>'
+            + '</div>';
+        }
+      } else {
+        throw new Error(json.message || 'Submission failed');
+      }
+    } catch(err) {
+      btn.disabled = false;
+      btn.textContent = origText;
+      var errP = form.querySelector('.form-error');
+      if (!errP) {
+        errP = document.createElement('p');
+        errP.className = 'form-error';
+        errP.style.cssText = 'color:#ff6b6b;margin-top:12px;font-size:14px;text-align:center';
+        form.appendChild(errP);
+      }
+      errP.textContent = 'Something went wrong. Please call us: 833-346-4652';
+    }
+  });
+})();
+</script>
+</body>
+</html>
