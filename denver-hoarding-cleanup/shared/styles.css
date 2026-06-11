@@ -1,0 +1,461 @@
+/* ============================================================
+   Emergency Cleanings — Shared Brand Styles
+   Color palette: Deep Navy + Emergency Orange (production variant)
+   Updated: May 2026 — A/B variant B
+   ============================================================ */
+
+:root {
+  --navy-dark:   #0A0F1E;                /* primary — hero, nav, footer, CTA section */
+  --slate:       #1E2A3A;                /* secondary — cards, light-section bg */
+  --body-text:   #1f2937;                /* body copy on white sections */
+  --orange:      #FF6B00;                /* all CTAs, accents, icons */
+  --orange-hover:#e66000;                /* button hover state */
+  --white:       #ffffff;
+  --light-bg:    #f9fafb;                /* white-section subtle tint */
+  --border:      #e2e6ef;
+  --footer-bg:   #0A0F1E;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: var(--body-text);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+/* ---- Typography ---- */
+h1 { font-size: clamp(32px, 5vw, 51px); font-weight: 900; line-height: 1.1; }
+h2 { font-size: clamp(26px, 3.5vw, 38px); font-weight: 800; color: var(--slate); line-height: 1.2; }
+h3 { font-size: 18px; font-weight: 700; color: var(--navy-dark); }
+p  { font-size: 16px; font-weight: 400; }
+
+/* ---- Utility ---- */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.section    { padding: 72px 0; }
+
+/* Dark section — Deep Navy */
+.section--dark {
+  background: var(--navy-dark);
+  color: var(--white);
+}
+.section--dark h2 { color: var(--white); }
+
+/* Light section — Muted Slate (secondary sections) */
+.section--light {
+  background: var(--slate);
+  color: var(--white);
+}
+.section--light h2 { color: var(--white); }
+.section--light p  { color: rgba(255,255,255,0.85); }
+.section--light .eyebrow { color: var(--orange); }
+
+/* Eyebrow — orange on dark, slate-blue on white */
+.eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.15s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn:hover { transform: translateY(-1px); }
+
+/* Primary CTA — Emergency Orange */
+.btn--primary {
+  background: var(--orange);
+  color: var(--white);
+}
+.btn--primary:hover { background: var(--orange-hover); }
+
+/* Secondary CTA — white outline */
+.btn--secondary {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255,255,255,0.5);
+}
+.btn--secondary:hover { border-color: var(--white); }
+
+/* Outline — for use on white sections */
+.btn--outline {
+  background: transparent;
+  color: var(--orange);
+  border: 2px solid var(--orange);
+}
+.btn--outline:hover { background: var(--orange); color: var(--white); }
+
+/* ---- Nav ---- */
+.nav {
+  background: var(--navy-dark);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav__logo img { height: 44px; }
+.nav__right { display: flex; align-items: center; gap: 16px; }
+.nav__phone {
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+}
+.nav__phone:hover { color: var(--orange); }
+
+/* ---- Hero ---- */
+.hero {
+  background: var(--navy-dark);
+  color: var(--white);
+  padding: 80px 0 72px;
+}
+.hero__label { color: var(--orange); }
+.hero h1 { color: var(--white); margin-bottom: 20px; }
+.hero__sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.85);
+  max-width: 600px;
+  margin-bottom: 36px;
+  line-height: 1.65;
+}
+.hero__ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 56px; }
+
+/* ---- Stats bar ---- */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.stat {
+  background: rgba(255,255,255,0.05);
+  padding: 20px 16px;
+  text-align: center;
+}
+.stat__num {
+  display: block;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--orange);
+  line-height: 1;
+}
+.stat__label {
+  display: block;
+  font-size: 13px;
+  color: rgba(255,255,255,0.72);
+  margin-top: 4px;
+}
+
+/* ---- Steps (on white section) ---- */
+.steps { display: flex; flex-direction: column; gap: 32px; }
+.step  { display: flex; gap: 24px; align-items: flex-start; }
+.step__num {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--white);
+  font-weight: 900;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step__body h3 { margin-bottom: 6px; color: var(--navy-dark); }
+.step__body p  { color: #4b5563; font-size: 16px; }
+
+/* ---- Feature grid (on Muted Slate section) ---- */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+.feature {
+  background: rgba(255,255,255,0.06);  /* subtle lift on slate bg */
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top: 4px solid var(--orange); /* 4px orange top accent */
+  border-radius: 10px;
+  padding: 28px 24px;
+}
+.feature__icon {
+  font-size: 29px;
+  margin-bottom: 12px;
+  display: block;
+}
+.feature h3 { margin-bottom: 8px; color: var(--white); }
+.feature p  { color: rgba(255,255,255,0.82); font-size: 15px; }
+
+/* ---- Scope scale (on white section) ---- */
+.scope-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+.scope-table th, .scope-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+.scope-table th { font-weight: 700; color: var(--slate); background: var(--light-bg); }
+.scope-badge {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--navy-dark);
+  color: var(--white);
+  font-weight: 700;
+  text-align: center;
+  line-height: 28px;
+  font-size: 14px;
+}
+
+/* ---- Cities (on Muted Slate section) ---- */
+.cities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 32px;
+}
+.city-pill {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  text-align: center;
+}
+
+/* ---- Testimonials (on Deep Navy section) ---- */
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+.testimonial {
+  background: var(--slate);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 4px solid var(--orange); /* 4px orange top accent on cards */
+  border-radius: 10px;
+  padding: 28px 24px;
+}
+.testimonial__stars { color: var(--orange); font-size: 16px; margin-bottom: 12px; }
+.testimonial__text  { color: rgba(255,255,255,0.85); font-size: 16px; line-height: 1.65; margin-bottom: 16px; }
+.testimonial__name  { font-weight: 700; color: var(--white); font-size: 14px; }
+.testimonial__loc   { color: rgba(255,255,255,0.55); font-size: 13px; }
+
+/* ---- FAQ (on white section) ---- */
+.faq { display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-item summary {
+  list-style: none;
+  padding: 20px 0;
+  font-weight: 700;
+  color: var(--navy-dark);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+';
+  font-size: 22px;
+  color: var(--orange);
+  flex-shrink: 0;
+}
+.faq-item[open] summary::after { content: '−'; }
+.faq-item p { padding-bottom: 20px; color: #4b5563; font-size: 16px; line-height: 1.7; }
+
+/* ---- CTA section ---- */
+.cta-section {
+  background: var(--navy-dark);
+  color: var(--white);
+  padding: 72px 0;
+  text-align: center;
+}
+.cta-section h2 { color: var(--white); margin-bottom: 16px; }
+.cta-section p  {
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 36px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-section .cta-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
+
+/* ---- Footer ---- */
+.footer {
+  background: var(--footer-bg);
+  color: rgba(255,255,255,0.5);
+  padding: 32px 0;
+  font-size: 14px;
+  text-align: center;
+}
+.footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+.footer a:hover { color: var(--orange); }
+
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  .section { padding: 52px 0; }
+  .hero { padding: 56px 0 52px; }
+  .hero__ctas { flex-direction: column; }
+  .step { flex-direction: column; }
+  .cta-section .cta-buttons { flex-direction: column; align-items: center; }
+}
+
+/* ---- Hero Grid (two-column layout) ---- */
+.hero__grid {
+  display: grid;
+  grid-template-columns: 58% 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.hero__left { display: flex; flex-direction: column; }
+
+/* Prevent CTA button from stretching full-width inside flex column */
+.hero__left > .btn {
+  align-self: flex-start;
+}
+
+/* ---- Badge Pills ---- */
+.badge-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 28px 0 32px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  white-space: nowrap;
+}
+
+/* ---- Stats bar inside hero left — force single row ---- */
+.hero__left .stats-bar {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ---- Form Card ---- */
+.form-card {
+  background: var(--slate);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top: 4px solid var(--orange);
+  border-radius: 12px;
+  padding: 32px 28px;
+  position: sticky;
+  top: 84px;
+}
+
+.form-card h3 {
+  color: var(--white);
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+
+.form-card > p {
+  color: rgba(255,255,255,0.65);
+  font-size: 14px;
+  margin-bottom: 22px;
+}
+
+.form-field {
+  margin-bottom: 14px;
+}
+
+.form-field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  color: var(--white);
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.form-field input::placeholder { color: rgba(255,255,255,0.3); }
+.form-field input:focus { border-color: var(--orange); background: rgba(255,255,255,0.1); }
+
+.btn--full { width: 100%; justify-content: center; margin-top: 6px; }
+
+.form-card__note {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  margin-top: 14px;
+  line-height: 1.5;
+}
+
+/* ---- Hero sub — no max-width constraint in two-col layout ---- */
+.hero__sub {
+  max-width: none;
+  margin-bottom: 32px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; gap: 32px; }
+  .form-card { position: static; }
+}
+
+@media (max-width: 640px) {
+  .badge-pills { gap: 6px; }
+  .badge { font-size: 12px; padding: 5px 10px; }
+}
